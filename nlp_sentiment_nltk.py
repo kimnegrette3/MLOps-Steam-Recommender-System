@@ -61,6 +61,7 @@ def get_sentiment_value(text):
     
 # call de las funciones para la nueva columna con sentiment_analysis
 df_exp_revs['sentiment_analysis'] = df_exp_revs['review'].apply(get_sentiment_value)
+df_exp_revs = df_exp_revs.drop('review',axis=1)
 
 # Guardar el DataFrame con la nueva columna en un nuevo archivo CSV
-df_exp_revs.to_csv('./datasets/aus_user_revs_with_sentiment.csv', index=False)
+df_exp_revs.to_csv('./datasets/aus_user_revs_clean.csv', index=False)
