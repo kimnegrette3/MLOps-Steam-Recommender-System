@@ -1,4 +1,4 @@
-user_id,reco_porcentaje,total_spent,items_count
+user_id,procentaje_recomendacion,cantidad_gastada,cantidad_items
 --000--,100,402.77000000000004,58.0
 --ace--,100,166.82,44.0
 --ionex--,100,109.92,23.0
