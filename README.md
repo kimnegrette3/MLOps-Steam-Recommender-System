@@ -23,7 +23,7 @@ El ciclo de vida de un proyecto de Machine Learning debe contemplar desde el tra
 
 ## Rol a desarrollar
 
-Empezaste a trabajar como **`Data Scientist`** en Steam, una plataforma multinacional de videojuegos. El mundo es bello y vas a crear tu primer modelo de ML que soluciona un problema de negocio: Steam pide que te encargues de predecir el precio de un videojuego. :worried:
+Empezaste a trabajar como **`Data Scientist`** en Steam, una plataforma multinacional de videojuegos. El mundo es bello y vas a crear tu primer modelo de ML que soluciona un problema de negocio: Steam pide que te encargues de crear un sistema de recomendación de videojuegos para usuarios. :worried:
 
 Vas a sus datos y te das cuenta que la madurez de los mismos es poca (ok, es nula :sob: ): Datos anidados, de tipo raw, no hay procesos automatizados para la actualización de nuevos productos, entre otras cosas… haciendo tu trabajo imposible :weary: . 
 
@@ -56,9 +56,9 @@ Debes empezar desde 0, haciendo un trabajo rápido de **`Data Engineer`** y tene
     Devuelve el `puesto` en el que se encuentra un género sobre el ranking de los mismos analizado bajo la columna PlayTimeForever. 
 
 + def **userforgenre( *`género` : str* )**:
-    `Top 5` de usuarios con más horas de juego en el género dado, con su URL y user_id.
+    `Top 5` de usuarios con más horas de juego en el género dado, con su URL (del user) y user_id.
 
-+ def **developer( *`género` : str* )**:
++ def **developer( *`desarrollador` : str* )**:
     `Cantidad` de items y `porcentaje` de contenido Free por año según empresa desarrolladora. 
 Ejemplo de salida:
     | Activision ||
@@ -69,7 +69,7 @@ Ejemplo de salida:
     | xxxx    | xx%   |
 
 
-+ def **sentiment_analysis( *`empresa desarrolladora` : str* )**:
++ def **sentiment_analysis( *`año` : int* )**:
     Según el año de lanzamiento, se devuelve una lista con la cantidad de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento. 
 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ejemplo de retorno: *{Negative = 182, Neutral = 120, Positive = 278}*
@@ -135,7 +135,7 @@ Aquí te sintetizamos que es lo que consideramos un MVP aprobatorio, y la difere
 
 ## **Fuente de datos**
 
-+ [Dataset](https://drive.google.com/drive/folders/1HqBG2-sUkz_R3h1dZU5F2uAzpRn7BSpj?usp=drive_link): Carpeta con el archivo que requieren ser procesados, tengan en cuenta que hay datos que estan anidados (un diccionario o una lista como valores en la fila).
++ [Dataset](https://drive.google.com/drive/folders/1HqBG2-sUkz_R3h1dZU5F2uAzpRn7BSpj): Carpeta con el archivo que requieren ser procesados, tengan en cuenta que hay datos que estan anidados (un diccionario o una lista como valores en la fila).
 + [Diccionario de datos](https://docs.google.com/spreadsheets/d/1-t9HLzLHIGXvliq56UE_gMaWBVTPfrlTf2D9uAtLGrk/edit?usp=drive_link): Diccionario con algunas descripciones de las columnas disponibles en el dataset.
 <br/>
 
