@@ -21,3 +21,12 @@ def userdata(user_id : str):
     user_data = df_user[df_user['user_id'] == user_id]
     
     return user_data.to_json(orient='records')
+
+@app.get("/sentimentanalysis")
+def sentiment_analysis(año : str):
+    df = pd.read_csv('dataquery/sentiment_analysis.csv')
+    if año in df['year_released']:
+        return df[df['year_released'] == año]
+    else:
+        return 'Year not found'
+        
