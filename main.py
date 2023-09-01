@@ -34,4 +34,4 @@ def genre(genre : str):
         genre_info = df_genre[df_genre['Genre']==genre]
     else:
         return 'No se encontro el genero'
-    return json.dumps(genre_info.to_json(orient='records'), indent=4)
+    return genre_info.to_json(orient='records')
