@@ -28,7 +28,7 @@ def sentiment_analysis(anio : str):
         response = df[df['year_released'] == anio].to_dict(orient='records')
         return JSONResponse(status_code=200,content={"results":response})
     else:
-        return JSONResponse(status_code=404,content={"error":f"Year '{anio}' is not found"})
+        return JSONResponse(status_code=404,content={"error":f"Year '{anio}' not found"})
         
 
 # Enpoint de la función Genero, se ingresa un genero en formato str
@@ -57,3 +57,16 @@ def userforgenre( genero : str ):
     top5 = df1.sort_values(by=genero,ascending=False).head(5).reset_index()
     response = top5[['user_id','user_url']].to_dict(orient='records')
     return JSONResponse(status_code=200,content={"results":response})
+
+#Endpoint que recibe un desarrollador y devuelve la cantidad total de items 
+# y el porcentaje de items gratis por cada año
+@app.get("/desarrollador/{desarrollador}", tags=['desarrollador'])
+def developer(desarrollador : str):
+    df = pd.read_csv('dataquery/developer.csv')
+    desarrollador = desarrollador.strip().lower()
+    if df['developer'].str.contains(desarrollador).any():
+        data = df[df['developer'] == desarrollador]
+        response = data[['release_year','item_count','porcentaje_free']].to_dict(orient='records')
+        return JSONResponse(status_code=200, content={"results":response})
+    else:
+        return JSONResponse(status_code=404, content={'error': f"Developer {desarrollador} not found"})
