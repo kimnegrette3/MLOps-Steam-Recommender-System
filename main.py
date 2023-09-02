@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 import pandas as pd
 import joblib
-
+from sklearn.neighbors import NearestNeighbors
 
 app = FastAPI(title= 'Steam-API')
 
