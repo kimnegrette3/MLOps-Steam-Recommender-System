@@ -99,3 +99,7 @@ def recomendacion_juego( game_id : int ):
                 'game_id':game_id,
                 'recomendados':df[['title','id']].loc[game_indices].to_dict(orient='records')}
     return response
+
+@app.get("/version_sklearn/")
+def get_sklearn_version():
+    return {"scikit-learn version": sklearn.__version__}
