@@ -19,8 +19,9 @@ def userdata(user_id : str):
 @app.get("/sentimentanalysis/{año}",tags=['sentiment'])
 def sentiment_analysis(año : str):
     df = pd.read_csv('dataquery/sentiment_analysis.csv')
-    if año in df['year_released']:
-        return df[df['year_released'] == año]
+    df['year_released'] = df['year_released'].astype(str)
+    if df['year_released'].str.contains(año).any():
+        return df[df['year_released'] == año].to_json(orient='records')
     else:
         return 'Year not found'
         
