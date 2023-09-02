@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 import pandas as pd
-import json
+import joblib
+
 
 app = FastAPI(title= 'Steam-API')
 
@@ -19,7 +20,7 @@ def userdata(user_id : str):
     response = user_data.to_dict(orient='records')
     return JSONResponse(status_code=200,content={"results":response})
 
-@app.get("/sentimentanalysis/{anio}")
+@app.get("/sentimentanalysis/{anio}",tags=['sentiment'])
 def sentiment_analysis(anio : str):
     anio = anio.strip()
     df = pd.read_csv('dataquery/sentiment_analysis.csv')
@@ -57,3 +58,30 @@ def userforgenre( genero : str ):
     top5 = df1.sort_values(by=genero,ascending=False).head(5).reset_index()
     response = top5[['user_id','user_url']].to_dict(orient='records')
     return JSONResponse(status_code=200,content={"results":response})
+
+@app.get("/recomendacion_juego/{game_id}",tags=['Ml_model'])
+def recomendacion_juego( game_id : int ):
+    # carga de archivos
+    knn_load = joblib.load(r'./dataquery/modelo_knn.pkl')
+    tfidf_matrix= joblib.load(r'./dataquery/tfidf_matrix.pkl')
+    df = pd.read_csv(r'./dataquery/game_profile.csv')
+
+    if game_id not in df['id'].values:
+        return f"Game Id '{game_id}' not found"
+    # trae el index donde se encuetra el game_id
+    idx = df.index[df['id'] == game_id].tolist()[0]
+
+    # funcion para traer el nombre del juego
+    name = df['title'].loc[idx]
+    # print(f'Porque te gusto "{name}" te recomendamos:')
+
+    
+    values , indices = knn_load.kneighbors(tfidf_matrix[idx])
+
+    
+    # Exclude the first (index 0) since it'll be the game itself
+    game_indices = indices[0][1:]
+    response = {'titulo_buscado':name,
+                'game_id':game_id,
+                'recomendados':df[['title','id']].loc[game_indices].to_dict(orient='records')}
+    return response
