@@ -32,9 +32,9 @@ def sentiment_analysis(anio : str):
         return JSONResponse(status_code=404,content={"error":f"Year '{anio}' not found"})
         
 
-# Enpoint de la función Genero, se ingresa un genero en formato str
+# Endpoint de la función Genero, se ingresa un genero en formato str
 # Devuelve un objeto json con el genero cantidad de horas y rank
-# en base de las horas jugadas totales de todos los generos
+# en base de las horas jugadas totales de todos los géneros
 @app.get("/genre/{genre}",tags=['genre'])
 def genre(genre : str):
     genre = genre.lower().strip()
