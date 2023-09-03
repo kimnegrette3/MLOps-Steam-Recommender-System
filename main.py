@@ -20,9 +20,9 @@ def read_root():
 @app.get("/userdata/{user_id}",tags=['User'])
 def userdata(user_id : str):
     '''
-    Recibe un string con el **"User Id"** y devuelve un summary del user</br>
+    **User Data:**Recibe un string con el **"User Id"** y devuelve un summary del user</br>
     
-    Ejemplo:
+    Ejemplo: --000--
 
         {
         "user_id": "--000--",
@@ -40,7 +40,7 @@ def userdata(user_id : str):
 
 # Sentiment Analysis: recibe un str con el año que deseas evaluar
 # Retorna el analisis
-@app.get("/sentimentanalysis/{year}",tags=['Sentiment'])
+@app.get("/sentimentanalysis/{year}",tags=['sentiment analysis'])
 def sentiment_analysis(year : str):
     '''
     **Sentiment Analysis:** recibe un str con el año que deseas evaluar y retorna la cantidad de reseñas</br>
@@ -104,7 +104,7 @@ def genre(genre : str):
 @app.get("/userforgenre/{genero}",tags=['Genre'])
 def userforgenre( genero : str ):
     '''
-    **User for genre:** Recibe un String con el genero que se desea evaluar
+    **User for Genre:** Recibe un String con el genero que se desea evaluar
     Devuelve una lista ordenada de los usuarios ("User Id" y "User Url") con más horas jugadas según el ranking de cada género</br></br>
 
     Ejemplo: Indie
@@ -148,7 +148,7 @@ def userforgenre( genero : str ):
 @app.get("/developer/{developer}", tags=['Developer'])
 def developer(developer : str):
     '''
-    ** Developer:** Recibe un string con el nombre del desarrollador, 
+    **Developer:** Recibe un string con el nombre del desarrollador, 
     una lista de cada año donde el desarrollador publico juegos con su porcentaje de juegos free to play por año
 
     Ejemplo: Mortis Games
@@ -180,7 +180,7 @@ def developer(developer : str):
 @app.get("/game_recommendations/{game_id}",tags=['Ml_model'])
 def game_recommendations( game_id : int ):
     '''
-    Ingresa el **Game id** de un juego en formato int y la función te regresa las 5 mejores recomendaciones basado en ese juego
+    **Game Recommendations:** Ingresa el **Game id** de un juego en formato int y la función te regresa las 5 mejores recomendaciones basado en ese juego
     
     Ejemplo:</br>
 
