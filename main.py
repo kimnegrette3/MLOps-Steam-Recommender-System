@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 import pandas as pd
-import joblib
-from sklearn.neighbors import NearestNeighbors
+import ast
+
 
 app = FastAPI(title= 'Steam-API')
 
@@ -74,32 +74,36 @@ def developer(desarrollador : str):
 
 
 
+
+# INGRESA EL ID DE UN JUEGO EN FORMATO INT
+# DEVUELVE UNA LISTA CON LOS TOP5 RECOMENDACIONES
 @app.get("/recomendacion_juego/{game_id}",tags=['Ml_model'])
 def recomendacion_juego( game_id : int ):
+    '''
+    Ingresa el game id de un juego en formato int y la función te regresa las 5 mejores recomendaciones 
+    sobre el juego ingresado
+    '''
     # carga de archivos
-    knn_load = joblib.load(r'./dataquery/modelo_knn.pkl')
-    tfidf_matrix= joblib.load(r'./dataquery/tfidf_matrix.pkl')
-    df = pd.read_csv(r'./dataquery/game_profile.csv')
-
+    df = pd.read_csv(r'./dataquery/model_item.csv')
     if game_id not in df['id'].values:
-        return f"Game Id '{game_id}' not found"
-    # trae el index donde se encuetra el game_id
-    idx = df.index[df['id'] == game_id].tolist()[0]
+        return JSONResponse(status_code=404,content={'error':f"Game Id '{game_id}' not found"})
 
-    # funcion para traer el nombre del juego
-    name = df['title'].loc[idx]
-    # print(f'Porque te gusto "{name}" te recomendamos:')
+    # Obtiene la lista de recomendaciones
+    result = df[df['id'] == game_id]['recommends'].iloc[0]
 
-    values , indices = knn_load.kneighbors(tfidf_matrix[idx])
+    # Conversion a lista
+    try:
+        result = ast.literal_eval(result)
+    except (SyntaxError, ValueError):
+        # retorno error
+        return JSONResponse(status_code=404,content={'error':f"Game Id '{game_id}' not found"})
 
-    
-    # Exclude the first (index 0) since it'll be the game itself
-    game_indices = indices[0][1:]
-    response = {'titulo_buscado':name,
-                'game_id':game_id,
-                'recomendados':df[['title','id']].loc[game_indices].to_dict(orient='records')}
-    return response
+    response =[]
+    for item_id in result:
+        # Obtiene la información del juego recomendado
+        item_info = df[df['id'] == item_id].iloc[0]  
+        #append a la lista de salida
+        response.append({'game_id': int(item_info['id']), 
+                         'title': item_info['title']})
 
-@app.get("/version_sklearn/")
-def get_sklearn_version():
-    return {"scikit-learn version": sklearn.__version__}
+    return JSONResponse(status_code=200,content={"results":response})
