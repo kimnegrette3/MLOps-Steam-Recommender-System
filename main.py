@@ -1,8 +1,7 @@
 from fastapi import FastAPI
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse,HTMLResponse
 import pandas as pd
 import ast
-
 
 app = FastAPI(title= 'Steam-API')
 
@@ -13,8 +12,10 @@ def read_root():
     Root de la api donde debe regresar una pagina html
       Con la descripción de como usar los endpoints
     '''
-    response = {"message": "Welcome to steam recommendations api!"}
-    return JSONResponse(status_code=200,content=response)
+    with open("index.html", "r", encoding="utf-8") as file:
+        response = file.read()
+    
+    return HTMLResponse(status_code=200,content=response)
 
 # USERDATA: 
 @app.get("/userdata/{user_id}",tags=['User'])
@@ -182,7 +183,7 @@ def game_recommendations( game_id : int ):
     '''
     **Game Recommendations:** Ingresa el **Game id** de un juego en formato int y la función te regresa las 5 mejores recomendaciones basado en ese juego
     
-    Ejemplo:</br>
+    Ejemplo: 47810</br>
 
         {
         "results": [
