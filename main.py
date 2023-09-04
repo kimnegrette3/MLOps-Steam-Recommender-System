@@ -48,7 +48,7 @@ def userdata(user_id : str):
 # Endpoint de la función countreviews: Recibe dos fechas en formato str
 # Retorna la cantidad de usuarios que hicieron reviews entre esas fechas
 # y el porcentaje de recommended 
-@app.get("/countreviews/{date1}{date2}", tags=['Reviews'])
+@app.get("/countreviews/{date1}/{date2}", tags=['Reviews'])
 def countreviews(date1,date2 : str):
     '''
     **Count Reviews:** Recibe dos **fechas** en formato string y devuelve
