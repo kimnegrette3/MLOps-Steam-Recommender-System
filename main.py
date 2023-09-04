@@ -231,11 +231,14 @@ def developer(developer : str):
 @app.get("/game_recommendations/{game_id}",tags=['ML_model'])
 def game_recommendations( game_id : int ):
     '''
-    **Game Recommendations:** Ingresa el **Game id** de un juego en formato int y la función te regresa las 5 mejores recomendaciones basado en ese juego
+    **Game Recommendations:** Ingresa el **Game id** de un juego en formato int y la función te regresa 
+    las 5 mejores recomendaciones basado en ese juego
         Ejemplo: 47810</br>
+
             {
             "titulo_buscado": "Dragon Age: Origins - Ultimate Edition",
-            "results": [
+            "results": 
+                [
                 {
                 "game_id": 47730,
                 "title": "Dragon Age™: Origins Awakening"
@@ -256,7 +259,7 @@ def game_recommendations( game_id : int ):
                 "game_id": 24980,
                 "title": "Mass Effect 2"
                 }
-                ]
+            ]
             }
     '''
     # carga de archivos
