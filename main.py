@@ -48,13 +48,25 @@ def userdata(user_id : str):
 # Endpoint de la función countreviews: Recibe dos fechas en formato str
 # Retorna la cantidad de usuarios que hicieron reviews entre esas fechas
 # y el porcentaje de recommended 
-@app.get("/countreviews/{fecha1}{fecha2}", tags=['Reviews'])
+@app.get("/countreviews/{date1}{date2}", tags=['Reviews'])
 def countreviews(fecha1,fecha2 : str):
-    df_counter = pd.read_csv("df_counter_func_2.csv")
+    '''
+    **Count Reviews:** Recibe dos **fechas** en formato string y devuelve
+    la cantidad de usuarios que realizaron reviews y el porcentaje de recomendación
+    entre las fechas dadas. </br>
+
+    Ejemplo: date1: 2011-11-5, date2: 2014-07-8 </br>
+        { "results": [
+            {'cantidad_usuarios': 16951, 
+            'porcentaje_recomendacion': 0.9062716505559038}
+            }]
+        }
+    '''
+    df_counter = pd.read_csv("dataquery/count_reviews.csv")
     cantidad_usu_rese = df_counter[(df_counter["Fecha"]>fecha1)& (df_counter["Fecha"]<fecha2)]["user_id"].nunique()
     recommend = df_counter[(df_counter["Fecha"]>fecha1)& (df_counter["Fecha"]<fecha2)]["recommend"]
     porce_recom = (recommend.value_counts()[True])/len(recommend)
-    responde = {'cantidad_usuarios':cantidad_usu_rese, 'porcentaje_recomendacion':porce_recom}
+    response = {'cantidad_usuarios':cantidad_usu_rese, 'porcentaje_recomendacion':porce_recom}
     
     return JSONResponse(status_code=200, content={"results":response})
 
@@ -207,7 +219,7 @@ def developer(developer : str):
 
 # Endpoint de la función game_recommendations: Recibe el id de un videojuego en formato int
 # Retorna una lista con 5 videojuegos recomendados
-@app.get("/game_recommendations/{game_id}",tags=['Ml_model'])
+@app.get("/game_recommendations/{game_id}",tags=['ML_model'])
 def game_recommendations( game_id : int ):
     '''
     **Game Recommendations:** Ingresa el **Game id** de un juego en formato int y la función te regresa las 5 mejores recomendaciones basado en ese juego
