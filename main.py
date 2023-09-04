@@ -49,7 +49,7 @@ def userdata(user_id : str):
 # Retorna la cantidad de usuarios que hicieron reviews entre esas fechas
 # y el porcentaje de recommended 
 @app.get("/countreviews/{date1}{date2}", tags=['Reviews'])
-def countreviews(fecha1,fecha2 : str):
+def countreviews(date1,date2 : str):
     '''
     **Count Reviews:** Recibe dos **fechas** en formato string y devuelve
     la cantidad de usuarios que realizaron reviews y el porcentaje de recomendación
@@ -57,8 +57,8 @@ def countreviews(fecha1,fecha2 : str):
 
     Ejemplo: date1: 2011-11-5, date2: 2014-07-8 </br>
         { "results": [
-            {'cantidad_usuarios': 16951, 
-            'porcentaje_recomendacion': 0.9062716505559038
+            {'cantidad_usuarios': 17072, 
+            'porcentaje_recomendacion': 0.91
             }]
         }
     '''
