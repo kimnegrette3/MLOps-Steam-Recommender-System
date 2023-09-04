@@ -63,8 +63,8 @@ def countreviews(date1,date2 : str):
         }
     '''
     df_counter = pd.read_csv("dataquery/count_reviews.csv")
-    cantidad_usu_rese = df_counter[(df_counter["Fecha"]>fecha1)& (df_counter["Fecha"]<fecha2)]["user_id"].nunique()
-    recommend = df_counter[(df_counter["Fecha"]>fecha1)& (df_counter["Fecha"]<fecha2)]["recommend"]
+    cantidad_usu_rese = df_counter[(df_counter["Fecha"]>date1)& (df_counter["Fecha"]<date2)]["user_id"].nunique()
+    recommend = df_counter[(df_counter["Fecha"]>date1)& (df_counter["Fecha"]<date2)]["recommend"]
     porce_recom = (recommend.value_counts()[True])/len(recommend)
     response = {'cantidad_usuarios':cantidad_usu_rese, 'porcentaje_recomendacion':porce_recom.round(2)}
     
