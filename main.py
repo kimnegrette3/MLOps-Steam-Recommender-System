@@ -218,6 +218,7 @@ def developer(developer : str):
 
     if df['developer'].str.contains(developer).any():
         data = df[df['developer'] == developer]
+        data = data.sort_values('release_year', ascending=False)
         response = data[['release_year','item_count','porcentaje_free']].to_dict(orient='records')
         return JSONResponse(status_code=200, content={"results":response})
 
@@ -231,33 +232,32 @@ def developer(developer : str):
 def game_recommendations( game_id : int ):
     '''
     **Game Recommendations:** Ingresa el **Game id** de un juego en formato int y la función te regresa las 5 mejores recomendaciones basado en ese juego
-    
-    Ejemplo: 47810</br>
-
-        {
-        "results": [
+        Ejemplo: 47810</br>
             {
-            "game_id": 47730,
-            "title": "Dragon Age™: Origins Awakening"
-            },
-            {
-            "game_id": 17450,
-            "title": "Dragon Age: Origins"
-            },
-            {
-            "game_id": 17460,
-            "title": "Mass Effect"
-            },
-            {
-            "game_id": 7110,
-            "title": "Jade Empire™: Special Edition"
-            },
-            {
-            "game_id": 24980,
-            "title": "Mass Effect 2"
+            "titulo_buscado": "Dragon Age: Origins - Ultimate Edition",
+            "results": [
+                {
+                "game_id": 47730,
+                "title": "Dragon Age™: Origins Awakening"
+                },
+                {
+                "game_id": 17450,
+                "title": "Dragon Age: Origins"
+                },
+                {
+                "game_id": 17460,
+                "title": "Mass Effect"
+                },
+                {
+                "game_id": 7110,
+                "title": "Jade Empire™: Special Edition"
+                },
+                {
+                "game_id": 24980,
+                "title": "Mass Effect 2"
+                }
+                ]
             }
-        ]
-        }
     '''
     # carga de archivos
     df = pd.read_csv(r'./dataquery/model_item.csv')
@@ -276,11 +276,13 @@ def game_recommendations( game_id : int ):
         return JSONResponse(status_code=404,content={'error':f"Game Id '{game_id}' not found"})
 
     response =[]
+    item_buscado = df[df['id'] == game_id].iloc[0]
+
     for item_id in result:
         # Obtiene la información del juego recomendado
         item_info = df[df['id'] == item_id].iloc[0]  
         #append a la lista de salida
         response.append({'game_id': int(item_info['id']), 
                          'title': item_info['title']})
-
-    return JSONResponse(status_code=200,content={"results":response})
+    dict_respuesta = {'titulo_buscado': item_buscado['title'], 'results':response}  
+    return JSONResponse(status_code=200,content=dict_respuesta)
