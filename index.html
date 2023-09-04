@@ -2,85 +2,160 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:112.5%/1.625 -apple-system,'BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.8);font-family:-apple-system,'BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-weight:normal;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}h1{margin-left:0;margin-right:0;margin-top:2.4375rem;padding-bottom:calc(0.40625rem - 1px);padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.21875rem;color:inherit;font-family:-apple-system,'BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-weight:800;text-rendering:optimizeLegibility;font-size:2rem;line-height:1.1;border-bottom:1px solid hsla(0,0%,0%,0.07);}h2{margin-left:0;margin-right:0;margin-top:1.625rem;padding-bottom:calc(0.40625rem - 1px);padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.40625rem;color:inherit;font-family:-apple-system,'BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-weight:800;text-rendering:optimizeLegibility;font-size:1.51572rem;line-height:1.1;border-bottom:1px solid hsla(0,0%,0%,0.07);}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;color:inherit;font-family:-apple-system,'BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-weight:800;text-rendering:optimizeLegibility;font-size:1.31951rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;color:inherit;font-family:-apple-system,'BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-weight:800;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;color:inherit;font-family:-apple-system,'BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-weight:800;text-rendering:optimizeLegibility;font-size:0.87055rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;color:hsla(0,0%,0%,0.53);font-family:-apple-system,'BlinkMacSystemFont','Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';font-weight:800;text-rendering:optimizeLegibility;font-size:0.81225rem;line-height:1.1;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}ul{margin-left:1.625rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;list-style-position:outside;list-style-image:none;}ol{margin-left:1.625rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;font-size:0.85rem;line-height:1.625rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:3.25rem;font-size:1rem;line-height:1.625rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}blockquote{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0.8125rem;padding-left:calc(0.8125rem - 1px);padding-right:0;padding-top:0.8125rem;margin-bottom:0.8125rem;border-left:6px solid#FF9800;color:hsla(0,0%,0%,0.53);background:#FF980047;}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(0.8125rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:0.8125rem;}b{font-weight:600;}strong{font-weight:600;}dt{font-weight:600;}th{font-weight:600;}li{margin-bottom:calc(0.8125rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.625rem;margin-bottom:calc(0.8125rem / 2);margin-top:calc(0.8125rem / 2);}li > ul{margin-left:1.625rem;margin-bottom:calc(0.8125rem / 2);margin-top:calc(0.8125rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(0.8125rem / 2);}code{font-size:0.85rem;line-height:1.625rem;}kbd{font-size:0.85rem;line-height:1.625rem;}samp{font-size:0.85rem;line-height:1.625rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.08333rem;padding-right:1.08333rem;padding-top:0.8125rem;padding-bottom:calc(0.8125rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}h3,h4,h5,h6{margin-bottom:0.8125rem;margin-top:1.625rem;}ol,ul{margin-left:2.03125rem;}li>ol,li>ul{margin-left:2.03125rem;}a{color:#4078c0;text-decoration:none;}a:hover,a:active{text-decoration:underline;}h2,h3{margin-top:2.4375rem;}h1,h2{border-bottom:none;}</style>
+  <style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}</style>
   <title>Steam Recommendation API</title>
-  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
 <body>
-    <header class="header">
+    <!-- <header class="header">
         
-    </header>
+    </header> -->
   <div class="main">
     <div class="sidebar">
-      <h2>Menú lateral</h2>
+      <h2>Endpoints</h2>
       <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">User</a></li>
-        <li><a href="#">Dates</a></li>
-        <li><a href="#">Sentiment Analysis</a></li>
-        <li><a href="#">Developer</a></li>
-        <li><a href="#">Genre</a></li>
-        <li><a href="#">User to Genre</a></li>
-        <li><a href="#">Ml Recommendation</a></li>
+        <li><a href="#intro">Introducción</a></li>
+        <li><a href="#userdata">User Data</a></li>
+        <li><a href="#dates">Count Reviews</a></li>
+        <li><a href="#sentiment">Sentiment Analysis</a></li>
+        <li><a href="#developer">Developer</a></li>
+        <li><a href="#genre">Genre</a></li>
+        <li><a href="#userforgenre">User to Genre</a></li>
+        <li><a href="#mlrecommendation">Ml Recommendation</a></li>
       </ul>
     </div>
     <div class="content">
         <div class="article">
-            <h1>Steam API Documentation</h1>
-            <h2>Root</h2>
-            <p>Endpoint para obtener información general sobre la API.</p>
-            <p>Para acceder a esta página, utiliza la siguiente URL:</p>
-            <pre>/</pre>
+            <h1 id="intro">Lista de Endpoints del API</h1>
 
-            <h2>User Data</h2>
+            <h2 id="userdata">User Data</h2>
             <p>Endpoint para obtener datos de usuario.</p>
-            <p>User Data: Recibe un string con el "User Id" y devuelve un summary del user
-                Se puede acceder desde esta URL:
-            </p>
+            <p>User Data: Recibe un string con el "User Id" y devuelve un summary del user</p><p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
             <pre>https://steam-api-project.onrender.com/userdata/{user_id}</pre>
-            <div class="code"><p>Ejemplo de uso:
-                https://steam-api-project.onrender.com/userdata/--000--
-                Resultado:
-                {
-                    "user_id": "--000--",
-                    "procentaje_recomendacion": 100,
-                    "cantidad_gastada": 402.77,
-                    "cantidad_items": 58
-                }</p></div>
-            <h2>Sentiment Analysis</h2>
-            <p>Endpoint para realizar análisis de sentimientos basado en un año.</p>
+<div class="code"><p>https://steam-api-project.onrender.com/userdata/--000--
+    Resultado:
+    {
+        "user_id": "--000--",
+        "procentaje_recomendacion": 100,
+        "cantidad_gastada": 402.77,
+        "cantidad_items": 58
+    }</p></div>
+            <h2 id="countreviews">Count Reviews</h2>
+            <p>Endpoint para la cantidad de reviews realizadas entre dos fechas</p>
+            <p> </p>
+            <pre>https://steam-api-project.onrender.com/countreviews/{date1}/{date2}</pre>
+            <div class="code"><p>https://steam-api-project.onrender.com/countreviews/2011-11-5/2014-07-8
+    { "results": [
+    {
+        "cantidad_usuarios": 17072, 
+        "porcentaje_recomendacion": 0.91
+    }]
+}</p></div>
+            <h2 id="sentiment">Sentiment Analysis</h2>
+            <p>Endpoint para realizar análisis de sentimientos de las reviews de los usuarios agrupadas por año de lanzamiento del video juego.</p>
             <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
-            <pre>/sentimentanalysis/{year}</pre>
-            <p>Ejemplo de uso:</p>
-            <pre>/sentimentanalysis/2010</pre>
-
-            <h2>Genre</h2>
+            <pre>https://steam-api-project.onrender.com/sentimentanalysis/{year}</pre>
+<div class="code"><p>https://steam-api-project.onrender.com/sentimentanalysis/2010
+    Resultado:
+    {
+        "results": [
+            {
+            "year_released": "2010",
+            "Negative": 265,
+            "Neutral": 403,
+            "Positive": 1341
+            }]
+    }</p></div>
+            <h2 id="genre">Genre</h2>
             <p>Endpoint para obtener información sobre un género específico.</p>
             <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
-            <pre>/genre/{genre}</pre>
-            <p>Ejemplo de uso:</p>
-            <pre>/genre/RPG</pre>
+            <pre>   https://steam-api-project.onrender.com/genre/{genre}</pre>
+<div class="code"><p>https://steam-api-project.onrender.com/genre/RPG                
+    Resultado:
+        {
+            "results": [
+                {
+                "Genre": "rpg",
+                "Total_Hours": 1041022718,
+                "Rank": 3
+                }]
+        }</p></div>
 
-            <h2>User for Genre</h2>
+            <h2 id="userforgenre">User for Genre</h2>
             <p>Endpoint para obtener una lista de los usuarios con más horas de juego en un género.</p>
             <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
-            <pre>/userforgenre/{genre}</pre>
-            <p>Ejemplo de uso:</p>
-            <pre>/userforgenre/Indie</pre>
+            <pre>https://steam-api-project.onrender.com/userforgenre/{genre}</pre>
+<div class="code"><p>https://steam-api-project.onrender.com/userforgenre/Indie                
 
-            <h2>Developer</h2>
+{
+    "results": [
+        {
+        "user_id": "wolop",
+        "user_url": "http://steamcommunity.com/id/wolop"
+        },
+        {
+        "user_id": "76561198039832932",
+        "user_url": "http://steamcommunity.com/profiles/76561198039832932"
+        },
+        {
+        "user_id": "tsunamitad",
+        "user_url": "http://steamcommunity.com/id/tsunamitad"
+        },
+        {
+        "user_id": "jimmynoe",
+        "user_url": "http://steamcommunity.com/id/jimmynoe"
+        },
+        {
+        "user_id": "lildoughnut",
+        "user_url": "http://steamcommunity.com/id/lildoughnut"
+        }
+    ]
+    }</p></div>
+
+            <h2 id="developer">Developer</h2>
             <p>Endpoint para obtener información sobre un desarrollador específico.</p>
             <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
-            <pre>/developer/{developer}</pre>
-            <p>Ejemplo de uso:</p>
-            <pre>/developer/Mortis Games</pre>
+            <pre>https://steam-api-project.onrender.com/developer/{developer}</pre>
+<div class="code"><p>https://steam-api-project.onrender.com/developer/Mortis Games                
+{
+    "results": [
+        {
+        "release_year": 2017,
+        "item_count": 3,
+        "porcentaje_free": 33.33
+        }
+    ]
+    }</p></div>
 
-            <h2>Game Recommendations</h2>
+            <h2 id="mlrecommendation">Game Recommendations</h2>
             <p>Endpoint para obtener recomendaciones de juegos basado en un juego específico.</p>
             <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
-            <pre>/game_recommendations/{game_id}</pre>
-            <p>Ejemplo de uso:</p>
-            <pre>/game_recommendations/123</pre>
+            <pre>https://steam-api-project.onrender.com/game_recommendations/{game_id}</pre>
+            <div class="code"><p>https://steam-api-project.onrender.com/game_recommendations/47810                
+{
+    "results": [
+        {
+        "game_id": 47730,
+        "title": "Dragon Age™: Origins Awakening"
+        },
+        {
+        "game_id": 17450,
+        "title": "Dragon Age: Origins"
+        },
+        {
+        "game_id": 17460,
+        "title": "Mass Effect"
+        },
+        {
+        "game_id": 7110,
+        "title": "Jade Empire™: Special Edition"
+        },
+        {
+        "game_id": 24980,
+        "title": "Mass Effect 2"
+        }
+    ]
+}
         </div>
     </div>
   </div>

@@ -2,8 +2,12 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse,HTMLResponse
 import pandas as pd
 import ast
+from fastapi.staticfiles import StaticFiles
+
 
 app = FastAPI(title= 'Steam-API')
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 
 # ROOT DE LA WEB
 @app.get("/")
@@ -38,6 +42,36 @@ def userdata(user_id : str):
         return JSONResponse(status_code=404,content={'error': f"User with id '{user_id}' not found"})
     response = user_data.to_dict(orient='records')
     return JSONResponse(status_code=200,content={"results":response})
+
+# Endpoint de la función countreviews: Recibe dos fechas en formato str
+# Retorna la cantidad de usuarios que hicieron reviews entre esas fechas
+# y el porcentaje de recommended 
+@app.get("/countreviews/{date1}/{date2}", tags=['Reviews'])
+def countreviews(date1,date2 : str):
+    '''
+    **Count Reviews:** Recibe dos **fechas** en formato string y devuelve
+    la cantidad de usuarios que realizaron reviews y el porcentaje de recomendación
+    entre las fechas dadas. </br>
+
+    Ejemplo: date1: 2011-11-5, date2: 2014-07-8 </br>
+
+        { "results": [
+            {
+                "cantidad_usuarios": 17072, 
+                "porcentaje_recomendacion": 0.91
+            }]
+        }
+    '''
+    df_counter = pd.read_csv("dataquery/count_reviews.csv")
+    cantidad_usu_rese = df_counter[(df_counter["Fecha"]>=date1)& (df_counter["Fecha"]<=date2)]["user_id"].nunique()
+    recommend = df_counter[(df_counter["Fecha"]>=date1)& (df_counter["Fecha"]<=date2)]["recommend"]
+    true_count = recommend.value_counts().get(True, 0)  
+    porce_recom = true_count / len(recommend) if len(recommend) > 0 else 0  
+
+    response = {'cantidad_usuarios':cantidad_usu_rese, 'porcentaje_recomendacion':round(porce_recom,2)}
+    
+    return JSONResponse(status_code=200, content={"results":response})
+
 
 # Sentiment Analysis: recibe un str con el año que deseas evaluar
 # Retorna el analisis
