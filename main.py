@@ -14,9 +14,13 @@ def read_root():
       Con la descripción de como usar los endpoints
     '''
     response = {"message": "Welcome to steam recommendations api!"}
+
     return JSONResponse(status_code=200,content=response)
 
-# USERDATA: 
+
+# Endpoint de la función user_data: Recibe un string con el user_id
+# Retorna un resumen del mismo con la cantidad de dinero gastada, 
+# los items adquiridos y el porcentaje de juegos recomendados 
 @app.get("/userdata/{user_id}",tags=['User'])
 def userdata(user_id : str):
     '''
@@ -33,17 +37,34 @@ def userdata(user_id : str):
     '''
     df_user = pd.read_csv('dataquery/user_data.csv')
     user_data = df_user[df_user['user_id'] == user_id]
+
     if len(user_data) == 0:
         return JSONResponse(status_code=404,content={'error': f"User with id '{user_id}' not found"})
+
     response = user_data.to_dict(orient='records')
     return JSONResponse(status_code=200,content={"results":response})
 
-# Sentiment Analysis: recibe un str con el año que deseas evaluar
-# Retorna el analisis
-@app.get("/sentimentanalysis/{year}",tags=['sentiment analysis'])
+
+# Endpoint de la función countreviews: Recibe dos fechas en formato str
+# Retorna la cantidad de usuarios que hicieron reviews entre esas fechas
+# y el porcentaje de recommended 
+@app.get("/countreviews/{fecha1}{fecha2}", tags=['Reviews'])
+def countreviews(fecha1,fecha2 : str):
+    df_counter = pd.read_csv("df_counter_func_2.csv")
+    cantidad_usu_rese = df_counter[(df_counter["Fecha"]>fecha1)& (df_counter["Fecha"]<fecha2)]["user_id"].nunique()
+    recommend = df_counter[(df_counter["Fecha"]>fecha1)& (df_counter["Fecha"]<fecha2)]["recommend"]
+    porce_recom = (recommend.value_counts()[True])/len(recommend)
+    responde = {'cantidad_usuarios':cantidad_usu_rese, 'porcentaje_recomendacion':porce_recom}
+    
+    return JSONResponse(status_code=200, content={"results":response})
+
+
+# Endpoint de Sentiment Analysis: Recibe un str con el año que deseas evaluar
+# Retorna el análisis
+@app.get("/sentimentanalysis/{year}",tags=['Reviews'])
 def sentiment_analysis(year : str):
     '''
-    **Sentiment Analysis:** recibe un str con el año que deseas evaluar y retorna la cantidad de reseñas</br>
+    **Sentiment Analysis:** Recibe un string con el año que deseas evaluar y retorna la cantidad de reseñas</br>
     positivas, negativas y neutrales </br></br>
 
     Ejemplo: 2010</br>
@@ -61,21 +82,23 @@ def sentiment_analysis(year : str):
     year = year.strip()
     df = pd.read_csv('dataquery/sentiment_analysis.csv')
     df['year_released'] = df['year_released'].astype(str)
+
     if df['year_released'].str.contains(year).any():
         response = df[df['year_released'] == year].to_dict(orient='records')
         return JSONResponse(status_code=200,content={"results":response})
+
     else:
         return JSONResponse(status_code=404,content={"error":f"Year '{year}' not found"})
         
 
-# Endpoint de la función Genero, se ingresa un genero en formato str
+# Endpoint de la función Género: Se ingresa un genero en formato str
 # Devuelve un objeto json con el genero cantidad de horas y rank
 # en base de las horas jugadas totales de todos los géneros
 @app.get("/genre/{genre}",tags=['Genre'])
 def genre(genre : str):
     '''
-    **Genre:** Recibe un string con el nombre del genero a evaluar</br>
-    Devuelve el rank de las categorias con mas horas jugadas por los usuarios</br>
+    **Genre:** Recibe un string con el nombre del género a evaluar</br>
+    Devuelve el rank de las categorías con más horas jugadas por los usuarios</br>
     y su total de horas jugadas.</br><br/>
 
     Ejemplo: RPG
@@ -96,15 +119,19 @@ def genre(genre : str):
     if df_genre['Genre'].str.contains(genre).any():
         genre_info = df_genre[df_genre['Genre']==genre]
         response = genre_info.to_dict(orient='records')
+
     else:
         return JSONResponse(status_code=404,content={'error':f"Genre '{genre}' not found"})
+
     return JSONResponse(status_code=200,content={"results":response})
 
-# Endpoint que recibe un string para el genero y regresa el top5 de los usuarios con mas horas de juego
+
+# Endpoint de la función user_for_genre: Recibe un string para el genero
+# Regresa el top5 de los usuarios con mas horas de juego
 @app.get("/userforgenre/{genero}",tags=['Genre'])
 def userforgenre( genero : str ):
     '''
-    **User for Genre:** Recibe un String con el genero que se desea evaluar
+    **User for Genre:** Recibe un string con el género que se desea evaluar</br>
     Devuelve una lista ordenada de los usuarios ("User Id" y "User Url") con más horas jugadas según el ranking de cada género</br></br>
 
     Ejemplo: Indie
@@ -136,20 +163,23 @@ def userforgenre( genero : str ):
     '''
     genero = genero.lower().strip()
     df1 = pd.read_csv(r'./dataquery/top5_users.csv')
+
     if genero not in df1.columns:
         return JSONResponse(status_code=404,content={'error':f"Genre '{genero}' not found"})
     
     top5 = df1.sort_values(by=genero,ascending=False).head(5).reset_index()
     response = top5[['user_id','user_url']].to_dict(orient='records')
+
     return JSONResponse(status_code=200,content={"results":response})
 
-#Endpoint que recibe un desarrollador y devuelve la cantidad total de items 
-# y el porcentaje de items gratis por cada año
+
+# Endpoint de la función Developer: Recibe un desarrollador
+# Devuelve la cantidad total de items y el porcentaje de items gratis por cada año
 @app.get("/developer/{developer}", tags=['Developer'])
 def developer(developer : str):
     '''
-    **Developer:** Recibe un string con el nombre del desarrollador, 
-    una lista de cada año donde el desarrollador publico juegos con su porcentaje de juegos free to play por año
+    **Developer:** Recibe un string con el nombre del desarrollador. 
+    Devuelve una lista de cada año donde el desarrollador publicó juegos con su porcentaje de juegos free to play por año
 
     Ejemplo: Mortis Games
 
@@ -165,18 +195,18 @@ def developer(developer : str):
     '''
     df = pd.read_csv('dataquery/developer.csv')
     developer = developer.strip().lower()
+
     if df['developer'].str.contains(developer).any():
         data = df[df['developer'] == developer]
         response = data[['release_year','item_count','porcentaje_free']].to_dict(orient='records')
         return JSONResponse(status_code=200, content={"results":response})
+
     else:
         return JSONResponse(status_code=404, content={'error': f"Developer {developer} not found"})
 
 
-
-
-# INGRESA EL ID DE UN JUEGO EN FORMATO INT
-# DEVUELVE UNA LISTA CON LOS TOP5 RECOMENDACIONES
+# Endpoint de la función game_recommendations: Recibe el id de un videojuego en formato int
+# Retorna una lista con 5 videojuegos recomendados
 @app.get("/game_recommendations/{game_id}",tags=['Ml_model'])
 def game_recommendations( game_id : int ):
     '''
@@ -211,6 +241,7 @@ def game_recommendations( game_id : int ):
     '''
     # carga de archivos
     df = pd.read_csv(r'./dataquery/model_item.csv')
+
     if game_id not in df['id'].values:
         return JSONResponse(status_code=404,content={'error':f"Game Id '{game_id}' not found"})
 
