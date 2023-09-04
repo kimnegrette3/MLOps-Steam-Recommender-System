@@ -59,16 +59,18 @@ def countreviews(date1,date2 : str):
 
         { "results": [
             {
-                "cantidad_usuarios": "17072", 
-                "porcentaje_recomendacion": "0.91"
+                "cantidad_usuarios": 17072, 
+                "porcentaje_recomendacion": 0.91
             }]
         }
     '''
     df_counter = pd.read_csv("dataquery/count_reviews.csv")
-    cantidad_usu_rese = df_counter[(df_counter["Fecha"]>date1)& (df_counter["Fecha"]<date2)]["user_id"].nunique()
-    recommend = df_counter[(df_counter["Fecha"]>date1)& (df_counter["Fecha"]<date2)]["recommend"]
-    porce_recom = (recommend.value_counts()[True])/len(recommend)
-    response = {'cantidad_usuarios':cantidad_usu_rese, 'porcentaje_recomendacion':porce_recom.round(2)}
+    cantidad_usu_rese = df_counter[(df_counter["Fecha"]>=date1)& (df_counter["Fecha"]<=date2)]["user_id"].nunique()
+    recommend = df_counter[(df_counter["Fecha"]>=date1)& (df_counter["Fecha"]<=date2)]["recommend"]
+    true_count = recommend.value_counts().get(True, 0)  
+    porce_recom = true_count / len(recommend) if len(recommend) > 0 else 0  
+
+    response = {'cantidad_usuarios':cantidad_usu_rese, 'porcentaje_recomendacion':round(porce_recom,2)}
     
     return JSONResponse(status_code=200, content={"results":response})
 
