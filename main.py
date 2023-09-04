@@ -56,9 +56,11 @@ def countreviews(date1,date2 : str):
     entre las fechas dadas. </br>
 
     Ejemplo: date1: 2011-11-5, date2: 2014-07-8 </br>
+
         { "results": [
-            {'cantidad_usuarios': 17072, 
-            'porcentaje_recomendacion': 0.91
+            {
+                "cantidad_usuarios": "17072", 
+                "porcentaje_recomendacion": "0.91"
             }]
         }
     '''
