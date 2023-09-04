@@ -34,7 +34,7 @@ def userdata(user_id : str):
 
         {
         "user_id": "--000--",
-        "procentaje_recomendacion": 100,
+        "porcentaje_recomendacion": 100,
         "cantidad_gastada": 402.77,
         "cantidad_items": 58
         }
