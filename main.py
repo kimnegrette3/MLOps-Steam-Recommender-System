@@ -58,7 +58,7 @@ def countreviews(fecha1,fecha2 : str):
     Ejemplo: date1: 2011-11-5, date2: 2014-07-8 </br>
         { "results": [
             {'cantidad_usuarios': 16951, 
-            'porcentaje_recomendacion': 0.9062716505559038}
+            'porcentaje_recomendacion': 0.9062716505559038
             }]
         }
     '''
@@ -66,7 +66,7 @@ def countreviews(fecha1,fecha2 : str):
     cantidad_usu_rese = df_counter[(df_counter["Fecha"]>fecha1)& (df_counter["Fecha"]<fecha2)]["user_id"].nunique()
     recommend = df_counter[(df_counter["Fecha"]>fecha1)& (df_counter["Fecha"]<fecha2)]["recommend"]
     porce_recom = (recommend.value_counts()[True])/len(recommend)
-    response = {'cantidad_usuarios':cantidad_usu_rese, 'porcentaje_recomendacion':porce_recom}
+    response = {'cantidad_usuarios':cantidad_usu_rese, 'porcentaje_recomendacion':porce_recom.round(2)}
     
     return JSONResponse(status_code=200, content={"results":response})
 
