@@ -11,7 +11,7 @@
 ![Static Badge](https://img.shields.io/badge/Json-gray?style=flat&logo=Json)
 ![Static Badge](https://img.shields.io/badge/HTML-gray?style=flat&logo=HTML)
 
-# **STEAM VIDEOGAMES RECOMMENDER SYSTEM**
+# **STEAM VIDEO GAMES RECOMMENDER SYSTEM**
 [Access the Live Demo](https://steamapi-3is2.onrender.com)
 #### *by Kimberly Negrette Bohórquez*
 
