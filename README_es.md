@@ -16,7 +16,7 @@
 #### *by Kimberly Negrette Bohórquez*
 
 
-**For english version, clic [here](README_en.md)**
+**For english version, clic [here](README.md)**
 
 ## **Introducción:**
 
