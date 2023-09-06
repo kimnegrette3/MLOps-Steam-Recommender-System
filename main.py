@@ -3,13 +3,21 @@ from fastapi.responses import JSONResponse,HTMLResponse
 import pandas as pd
 import ast
 from fastapi.staticfiles import StaticFiles
+import time
+import asyncio
 
 
 app = FastAPI(title= 'Steam-API')
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+async def keep_alive_task():
+    while True:
+        # Realiza alguna actividad para mantener la cuenta activa
+        print("Stayin' Alive...")
+        await asyncio.sleep(550) # Espera 10 minutos
 
-# ROOT DE LA WEB
+
+# Root de la web
 @app.get("/")
 def read_root():
     '''
