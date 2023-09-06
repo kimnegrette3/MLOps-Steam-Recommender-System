@@ -32,7 +32,8 @@
             <p>Link a documentación automática de FastAPI: <a href="https://steamapi-3is2.onrender.com/docs">Click aquí</a></p>
             <h2 id="userdata">User Data</h2>
             <p>Endpoint para obtener datos de usuario.</p>
-            <p>User Data: Recibe un string con el "User Id" y devuelve un summary del user</p><p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
+            <p>Recibe un string con el "User Id" y devuelve datos específicos del usuario, como el porcentaje 
+                de recomendación de juegos, el gasto total y el número de juegos en su inventario</p><p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
             <pre>https://steamapi-3is2.onrender.com/userdata/{user_id}</pre>
 <div class="code"><p>https://steamapi-3is2.onrender.com/userdata/--000--
     Resultado:
@@ -44,7 +45,8 @@
     }</p></div>
             <h2 id="countreviews">Count Reviews</h2>
             <p>Endpoint para la cantidad de reviews realizadas entre dos fechas</p>
-            <p> </p>
+            <p>Recibe dos fechas en formato string y devuelve el número de reseñas generadas y el porcentaje de juegos recomendados durante ese período </p>
+            <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
             <pre>https://steamapi-3is2.onrender.com/countreviews/{date1}/{date2}</pre>
             <div class="code"><p>https://steamapi-3is2.onrender.com/countreviews/2011-11-5/2014-07-8
     { "results": [
@@ -54,7 +56,8 @@
     }]
 }</p></div>
             <h2 id="sentiment">Sentiment Analysis</h2>
-            <p>Endpoint para realizar análisis de sentimientos de las reviews de los usuarios agrupadas por año de lanzamiento del video juego.</p>
+            <p>Endpoint para realizar análisis de sentimientos de las reviews de los usuarios.</p>
+            <p>Recibe un string con un año de lanzamiento y devuelve la suma de reseñas positivas, negativas y neutrales para títulos lanzados en ese año</p>
             <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
             <pre>https://steamapi-3is2.onrender.com/sentimentanalysis/{year}</pre>
 <div class="code"><p>https://steamapi-3is2.onrender.com/sentimentanalysis/2010
@@ -70,6 +73,7 @@
     }</p></div>
             <h2 id="genre">Genre</h2>
             <p>Endpoint para obtener información sobre un género específico.</p>
+            <p>Recibe un género de juego en formato string t devuelve un ranking basado en el tiempo de juego comparado con otros géneros.</p>
             <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
             <pre>   https://steamapi-3is2.onrender.com/genre/{genre}</pre>
 <div class="code"><p>https://steamapi-3is2.onrender.com/genre/RPG                
@@ -84,7 +88,8 @@
         }</p></div>
 
             <h2 id="userforgenre">User for Genre</h2>
-            <p>Endpoint para obtener una lista de los usuarios con más horas de juego en un género.</p>
+            <p>Endpoint para obtener una lista de los usuarios recurrentes por género.</p>
+            <p>Recibe un string con un género y devuelve los 5 jugadores principales con más horas en ese género de juego.</p>
             <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
             <pre>https://steamapi-3is2.onrender.com/userforgenre/{genre}</pre>
 <div class="code"><p>https://steamapi-3is2.onrender.com/userforgenre/Indie                
@@ -116,6 +121,8 @@
 
             <h2 id="developer">Developer</h2>
             <p>Endpoint para obtener información sobre un desarrollador específico.</p>
+            <p>Recibe el nombre de un desarrollador de juegos en formato string y devuelve una lista anual de lanzamientos, incluyendo el 
+                total de juegos lanzados y el porcentaje de juegos gratuitos.</p>
             <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
             <pre>https://steamapi-3is2.onrender.com/developer/{developer}</pre>
 <div class="code"><p>https://steamapi-3is2.onrender.com/developer/Mortis Games                
@@ -130,7 +137,8 @@
     }</p></div>
 
             <h2 id="mlrecommendation">Game Recommendations</h2>
-            <p>Endpoint para obtener recomendaciones de juegos basado en un juego específico.</p>
+            <p>Endpoint para obtener recomendaciones de juegos basado en un juego indicado.</p>
+            <p>Recibe un ID de juego en formato string y devuelve el título del juego ingresado y una lista de los 5 principales juegos recomendados con sus títulos e IDs.</p>
             <p>Para acceder a este endpoint, utiliza la siguiente URL:</p>
             <pre>https://steamapi-3is2.onrender.com/game_recommendations/{game_id}</pre>
             <div class="code"><p>https://steamapi-3is2.onrender.com/game_recommendations/47810                
